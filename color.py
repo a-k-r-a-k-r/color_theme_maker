@@ -1,6 +1,15 @@
+'''
+    Program: Color Theme Maker
+    Author : akr
+    GitHub : https://github.com/a-k-r-a-k-r
+    Blog   : https://a-k-r-a-k-r.blogspot.com
+'''
+
+
 #Color Theme Maker
 import tkinter
 from tkinter import BOTH, IntVar, DISABLED, filedialog
+
 
 #Define window
 root = tkinter.Tk()
@@ -9,13 +18,9 @@ root.iconbitmap('resources/icons/color_wheel.ico')
 root.geometry('450x500')
 root.resizable(0,0)
 
-#Define fonts and colors
-#NONE: Using system defaults
 
 #Define functions
 def get_red(slider_value):
-    """Turn current slider value for red into a hex value and update color.
-    The scale value is passed automatically when the scale is moved calling the get_redfunction."""
     global red_value
 
     #Turn the slider value into an int and hex value. Strip leading chars so only two remain
@@ -30,9 +35,6 @@ def get_red(slider_value):
 
 
 def get_green(slider_value):
-    """Turn current slider value for green into a hex value and update color.
-    The scale value is passed automatically when the scale is moved calling the
-    get_green function."""
     global green_value
 
     #Turn the slider value into an int and hex value. Strip leading chars so only two remain
@@ -47,8 +49,6 @@ def get_green(slider_value):
 
 
 def get_blue(slider_value):
-    """Turn current slider value for blue into a hex value and update color.
-    The scale value is passed automatically when the scale is moved calling the get_blue function."""
     global blue_value
 
     #Turn the slider value into an int and hex value. Strip leading chars so only two remain
@@ -61,8 +61,8 @@ def get_blue(slider_value):
 
     update_color()
 
+
 def update_color():
-    """UPdate the current color box based on the slider values. Display tuple and hex values of the current color"""
     #Make the color box smaller than the original due to ipadx and ipday on the original color box
     color_box = tkinter.Label(input_frame, bg="#" + red_value + green_value + blue_value, height=6, width=15)
     color_box.grid(row=1, column=3, columnspan=2, padx=35, pady=10)
@@ -73,14 +73,12 @@ def update_color():
 
 
 def set_color(r,g,b):
-    """Set a given color"""
     red_slider.set(r)
     green_slider.set(g)
     blue_slider.set(b)
 
 
 def store_color():
-    """Store the current color tuple value and display color"""
     global stored_colors
 
     #Get the current value of each slider and append 0's to keep formatting
@@ -219,5 +217,7 @@ stored_colors[stored_color.get()] = [new_color_tuple.cget('text'),new_color_hex.
 red_value = "00"
 green_value = "00"
 blue_value = "00"
+
+
 #Run the root window's main loop
 root.mainloop()
