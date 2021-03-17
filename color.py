@@ -134,32 +134,31 @@ def save_colors():
 
 
 #Define Layout
-input_frame = tkinter.LabelFrame(root, padx=5, pady=5)
-output_frame = tkinter.LabelFrame(root, padx=5, pady=5)
+input_frame = tkinter.LabelFrame(root, bg="green",padx=5, pady=5)
+output_frame = tkinter.LabelFrame(root,bg="green", padx=5, pady=5)
 input_frame.pack(fill=BOTH, expand=True, padx=5, pady=5)
 output_frame.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-#Setting up the input frame.
 #Create the labels, sliders, and buttons for each color RGB
-red_label = tkinter.Label(input_frame, text="R")
-red_slider = tkinter.Scale(input_frame, from_=0, to=255, command=get_red)
-red_button = tkinter.Button(input_frame, text="Red", command=lambda:set_color(255,0,0))
-green_label = tkinter.Label(input_frame, text="G")
-green_slider = tkinter.Scale(input_frame, from_=0, to=255, command=get_green)
-green_button = tkinter.Button(input_frame, text="Green",command=lambda:set_color(0,255,0))
-blue_label = tkinter.Label(input_frame, text="B")
-blue_slider = tkinter.Scale(input_frame, from_=0, to=255, command=get_blue)
-blue_button = tkinter.Button(input_frame, text="Blue", command=lambda:set_color(0,0,255))
+red_label = tkinter.Label(input_frame, bg="green",text="R")
+red_slider = tkinter.Scale(input_frame, background="green",  highlightbackground="green", fg="black",from_=0, to=255, command=get_red)
+red_button = tkinter.Button(input_frame, text="Red",bg="black",fg="green", command=lambda:set_color(255,0,0))
+green_label = tkinter.Label(input_frame, text="G", bg="green")
+green_slider = tkinter.Scale(input_frame, background="green",  highlightbackground="green", fg="black", from_=0, to=255, command=get_green)
+green_button = tkinter.Button(input_frame, text="Green",bg="black",fg="green",command=lambda:set_color(0,255,0))
+blue_label = tkinter.Label(input_frame, text="B", bg="green")
+blue_slider = tkinter.Scale(input_frame, background="green",  highlightbackground="green", fg="black", from_=0, to=255, command=get_blue)
+blue_button = tkinter.Button(input_frame, text="Blue",bg="black",fg="green", command=lambda:set_color(0,0,255))
 
 #Create buttons for each complimentary color
-yellow_button = tkinter.Button(input_frame, text="Yellow",command=lambda:set_color(255,255,0))
-cyan_button = tkinter.Button(input_frame, text="Cyan",command=lambda:set_color(0,255,255))
-magenta_button = tkinter.Button(input_frame, text="Magenta",command=lambda:set_color(255,0,255))
+yellow_button = tkinter.Button(input_frame, text="Yellow",bg="black",fg="green",command=lambda:set_color(255,255,0))
+cyan_button = tkinter.Button(input_frame, text="Cyan",bg="black",fg="green",command=lambda:set_color(0,255,255))
+magenta_button = tkinter.Button(input_frame, text="Magenta",bg="black",fg="green",command=lambda:set_color(255,0,255))
 
 #Create utility buttons
-store_button = tkinter.Button(input_frame, text="Store Color", command=store_color)
-save_button = tkinter.Button(input_frame, text="Save", command=save_colors)
-quit_button = tkinter.Button(input_frame, text="Quit", command=root.destroy)
+store_button = tkinter.Button(input_frame, text="Store Color",bg="black",fg="green", command=store_color)
+save_button = tkinter.Button(input_frame, text="Save",bg="black",fg="green", command=save_colors)
+quit_button = tkinter.Button(input_frame, text="Quit",bg="black",fg="red", command=root.destroy)
 
 #Put labels, sliders, and buttons on to the frame....Use ipadx with rbg buttons to define column width, then use sticky on others
 red_label.grid(row=0, column=0, sticky='W')
@@ -180,11 +179,11 @@ quit_button.grid(row=4, column=4, padx=1, pady=1, sticky="WE")
 
 #Create the color box and color labels
 color_box = tkinter.Label(input_frame, bg='black', height=6, width=15)
-color_tuple = tkinter.Label(input_frame, text='(0), (0), (0)')
-color_hex = tkinter.Label(input_frame, text='#000000')
+color_tuple = tkinter.Label(input_frame, text='(0), (0), (0)',bg="green")
+color_hex = tkinter.Label(input_frame, text='#000000',bg="green")
 
 #Put the color box and labels on the frame.
-color_box.grid(row=1, column=3, columnspan=2, padx=35, pady=10, ipadx=10, ipady=10)
+color_box.grid(row=1, column=3, columnspan=2, padx=35, pady=10, ipadx=1, ipady=1)
 color_tuple.grid(row=2, column=3, columnspan=2)
 color_hex.grid(row=3, column=3, columnspan=2)
 
@@ -195,19 +194,19 @@ stored_color = IntVar()
 
 #Create radio buttons to select stored colors and populate each row with placeholder values
 for i in range(6):
-    radio = tkinter.Radiobutton(output_frame, variable=stored_color, value=i)
+    radio = tkinter.Radiobutton(output_frame, variable=stored_color, value=i,bg="green")
     radio.grid(row=i, column=0, sticky='W')
 
-recall_button = tkinter.Button(output_frame, text="Recall Color", state=DISABLED)
-new_color_tuple = tkinter.Label(output_frame, text="(255), (255), (255)")
-new_color_hex = tkinter.Label(output_frame, text="#ffffff")
+recall_button = tkinter.Button(output_frame, text="Recall Color",bg="black",fg="green", state=DISABLED)
+new_color_tuple = tkinter.Label(output_frame, text="(255), (255), (255)",bg="green",fg="black")
+new_color_hex = tkinter.Label(output_frame, text="#ffffff",bg="green",fg="black")
 new_color_black_box = tkinter.Label(output_frame, bg="black", width=3, height=1)
 new_color_box = tkinter.Label(output_frame, bg='white', width=3, height=1)
 
 recall_button.grid(row=i, column=1, padx=20)
 new_color_tuple.grid(row=i, column=2, padx=20)
 new_color_hex.grid(row=i, column=3, padx=20)
-new_color_black_box.grid(row=i, column=4, pady=2, ipadx=5, ipady=5)
+new_color_black_box.grid(row=i, column=4, pady=2, ipadx=1, ipady=1)
 new_color_box.grid(row=i, column=4)
 
 #.cget() returns the value of a specific option. Store the text value of the tuple label and hex label
@@ -218,6 +217,6 @@ red_value = "00"
 green_value = "00"
 blue_value = "00"
 
-
+root.config(bg="black")
 #Run the root window's main loop
 root.mainloop()
