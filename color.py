@@ -217,6 +217,6 @@ red_value = "00"
 green_value = "00"
 blue_value = "00"
 
-root.config(bg="black")
+root.config(bg="darkgreen")
 #Run the root window's main loop
 root.mainloop()
